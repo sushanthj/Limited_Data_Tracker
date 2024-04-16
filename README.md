@@ -17,10 +17,6 @@ Building a generalizable and scalable tracker
 
 ![](docs/gifs/best.gif)
 
-# Deliverables
-- Other approaches you considered
-- Potential improvements you would make / shortcomings you noticed
-
 # Approach
 
 To achieve a generalized and scalable model the follow high level requirements were formulated:
