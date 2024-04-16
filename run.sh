@@ -8,12 +8,10 @@ git clone https://github.com/sushanthj/2D_to_3D.git
 
 python3 -m pip install gdown
 
-# Replace with your Google Drive link
 DATA_LINK="https://drive.google.com/uc?id=1BaulkeFg--oLW34NfpG2HG6FvAQTUghp"
 CHECKPOINT_LINK="https://drive.google.com/uc?id=1fckrHx2c8RoCKuzRPPjZQU5K47OGDXki"
 TRAIN_DATA_LINK="https://drive.google.com/uc?id=1WGhcvNgxeCb_PTXluwhNjpjN_HAb-6x9"
 
-# Replace with your relative folder path
 RELATIVE_PATH="classification/checkpoints/"
 
 # Get the current directory

@@ -2,7 +2,7 @@
 # Setup and Run Instructions
 
 Run the following commands to setup the environment
-- ```bash run.sh```
+- ```./run.sh```
 - ```python3 -m venv test_env```
 - ```pip3 install -r requirements.txt```
 - ```python3 -m pip install 'git+https://github.com/facebookresearch/segment-anything.git'```
