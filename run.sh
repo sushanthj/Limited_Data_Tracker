@@ -26,6 +26,7 @@ gdown $DATA_LINK -O data.zip
 gdown $TRAIN_DATA_LINK -O train_data.zip
 
 # Move the unzipped file to the specific folder
+mkdir $FOLDER
 mv checkpoint.pth $FOLDER
 
 # unzip the data files (for inference)

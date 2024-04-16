@@ -70,7 +70,8 @@ have attached a few images taken directly from the Huggingface tutorial below:
 
 ![](docs/images/hugging_face_2.png)
 
-However, after few trials, I found the detection to be inconsistent (and surprisingly **not** scale invariant)
+However, after few trials, I found the detection to be inconsistent (and
+surprisingly **not** scale invariant for our test data)
 
 Hence, I moved on to using Segment Anything, which was much more stable at the cost of longer
 runtime. For scalability, finetuning the zero shot detector would be a better option, but I
@@ -80,16 +81,16 @@ chose to use Segment Anything for this proof of concept.
 
 ### 2.2. Filtering the Zero Shot Detections
 
-- If running inference on non-anntated data, we will not get predicted labels from the zero-shot
+- If running inference on non-annotated data, we will not get predicted labels from the zero-shot
 detector's bounding boxes. Hence, these will need to be filtered.
 - **To build a filter on only 100 images of the video sequence, where only one side of the car
 is visible, would highly overfit any classification network.**
 - Hence, to build a common pipeline which can finetune a classifier on any unseen data, I needed
   more views of the object of interest.
 
-**I utilized a pre-trianed diffusion model which builds a 3D geometry** by optimizing an SDF called
+**I utilized a pre-trianed diffusion model which builds a 3D geometry** by optimizing a Signed Distance Function (SDFs) called
 [One-2-3-45](https://arxiv.org/pdf/2306.16928.pdf). I had to slightly hack this pipeline to
-output 2000 views instead of a discrete 4 views of the object.
+output ~5600 views instead of a discrete 4 views of the object.
 
 ### 2.3. Building and Training the Classifier
 
@@ -113,16 +114,27 @@ filtering using a finetuned classifier.**
 
 # Potential Improvements
 
+#### Detector
+- Segment anything is used here as a zero-shot detector. However, it's slow and requires a
+classifier to filter detections.
+- A **potential improvement could be to finetune an existing zero-shot detector** like OWL-ViT
+  which could yield runtime improvements and removes the need for a classifier.
+
+#### Classifier
 - The classifier can be improved with better augmentation (currently the generated views of the car only have white background)
-- Replace Segment Anything with a fine-tuned zero-shot detector for runtime gains
-- Use an updated tracker like Byte-Sort or Bot-Sort for better tracking
+- I used the SUN dataset with outdoor images (where no cars are present) as negative labels when training the classifier.
+  However, for other objects of interest where it may be difficult to find negative labels, methods like [mixup](https://arxiv.org/pdf/1710.09412v2.pdf)
+  can be used to build the dataset.
 - Train the classifier with images at different scales. Currently small segments manage to pass through the classifier as shown below:
   ![](docs/images/bad_dets.png)
+
+#### Tracker
+- Use an updated tracker like Byte-Sort or Bot-Sort for better tracking
 
 # Other Approaches Considered
 
 I also considered the following:
-1. Using the generated multiple views (2000+ views) of the object of interest to fintune an existing object detection network like DeTR
+1. Using the generated multiple views (5600 views) of the object of interest to fintune an existing object detection network like DeTR
 2. Running the zero shot detector over images at different scales
 
 While both the above options were viable, they had lesser chances of success in the short timeframe

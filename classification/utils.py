@@ -4,6 +4,7 @@ import torch.utils.data.dataloader
 from tqdm import tqdm
 import torch
 import os
+DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 def train_model(model : torch.nn.Module, dataloader : torch.utils.data.DataLoader,
                 optimizer, criterion, scheduler, config, device, scaler) -> tuple :
@@ -96,7 +97,7 @@ def get_trained_model(model, checkpoint_path, scheduler, optimizer):
     # Check if the checkpoint file exists
     if os.path.exists(checkpoint_path):
         # If the checkpoint file exists, load the checkpoint
-        checkpoint = torch.load(checkpoint_path)
+        checkpoint = torch.load(checkpoint_path, map_location=DEVICE)
         model.load_state_dict(checkpoint['model_state_dict'])
         start_epoch = 0
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
