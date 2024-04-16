@@ -107,6 +107,8 @@ filtering using a finetuned classifier.**
 #### Pipeline Step 2
 ![](docs/images/step_2.png)
 
+#### Pipeline Step 3 : Inference
+![](docs/images/step3.png)
 
 # Potential Improvements
 
