@@ -19,7 +19,7 @@ Building a generalizable and scalable tracker
 
 # Approach
 
-To achieve a generalized and scalable model the follow high level requirements were formulated:
+To achieve a generalized and scalable model the following high level requirements were formulated:
 
 1. The tracker's inference time **should not be affected by larger data** (100x the test set)
 2. The tracker must **work equally well for unseen data** and must improve with more annotated data
