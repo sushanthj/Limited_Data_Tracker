@@ -15,7 +15,12 @@ To do the final inference, run the below script:
 
 Building a generalizable and scalable tracker
 
-![](docs/gifs/best.gif)
+<!-- ![](docs/gifs/best.gif) -->
+![](docs/gifs/out.gif)
+
+## NOTE: This branch has the implementation of [flowsam](https://www.robots.ox.ac.uk/~vgg/research/flowsam/)
+
+![](docs/images/flow_sam.png)
 
 # Approach
 
