@@ -162,6 +162,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--model',
         type=str,
+        # default="flowpsam",
         default="flowisam",
         choices = ["flowpsam", "flowisam"],
     )
@@ -169,11 +170,13 @@ if __name__ == '__main__':
         '--ckpt_path',
         type=str,
         default="./frame_level_flowisam_vith_train_on_oclrsyn_dvs16.pth",
+        # default='./frame_level_flowpsam_vitbvith_train_on_oclrsyn_dvs17m.pth',
         help="ckpt path of flowi-sam / flowp-sam",
     )
     parser.add_argument(
         '--rgb_encoder',
         type=str,
+        # default="vit_b",
         default="vit_h",
         help="size of SAM image encoder to take in rgb",
     )
@@ -181,11 +184,13 @@ if __name__ == '__main__':
         '--rgb_encoder_ckpt_path',
         type=str,
         default="../sam_vit_h_4b8939.pth",
+        # default="../sam_vit_b_01ec64.pth",
         help="ckpt path of SAM image encoder to take in rgb, the ckpt can be downloaded from the official SAM repo (https://github.com/facebookresearch/segment-anything/)",
     )
     parser.add_argument(
         '--flow_encoder',
         type=str,
+        # default="vit_b",
         default="vit_h",
         help="size of SAM image encoder to take in flow",
     )
@@ -193,6 +198,7 @@ if __name__ == '__main__':
         '--flow_encoder_ckpt_path',
         type=str,
         default="../sam_vit_h_4b8939.pth",
+        # default="../sam_vit_b_01ec64.pth",
         help="ckpt path of SAM image encoder to take in flow, the ckpt can be downloaded from the official SAM repo (https://github.com/facebookresearch/segment-anything/)",
     )
 
@@ -201,7 +207,8 @@ if __name__ == '__main__':
         '--flow_gaps',
         type=str,
         # default="1,-1,2,-2",
-        default="1,-1",
+        # default="1,-1",
+        default="1",
         help="flow frame gaps, a string without spacing",
     )
     parser.add_argument(
@@ -267,4 +274,3 @@ if __name__ == '__main__':
 
     # evaluation
     eval(args, val_loader, flowsam)
-
